@@ -1,35 +1,16 @@
 package product;
 
-public class Shirt {
+public class Shirt extends Product {
 
-    private double price;
-    private String color;
-    private String brand;
     private Size size;
-    public enum Size {SMALL, MEDIUM, LARGE}
 
-    public double getPrice() {
-        return this.price;
+    public enum Size {
+        SMALL, MEDIUM, LARGE
     }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getColor() {
-        return this.color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getBrand() {
-        return this.brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
+    
+    public Shirt(double price, String color, String brand, Size size) {
+        super(price, color, brand);
+        this.size = size;
     }
 
     public Size getSize() {
@@ -40,5 +21,14 @@ public class Shirt {
         this.size = size;
     }
 
+    @Override
+    public void fold() {
+        System.out.println("Folding my shirt");
+    }
+    
+    @Override
+    public void wear() {
+        System.out.println("Wearing my shirt");
+    }
 
 }

@@ -31,5 +31,9 @@ public class Immutable {
         System.out.println(letter);
         System.out.println(letterWrapper);
 
+        String text = "hi";
+        text = "Hello";
+        System.out.println(text);
+
     }
 }

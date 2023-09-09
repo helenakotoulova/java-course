@@ -5,7 +5,8 @@ public class Main {
     public static void main(String[] args) {
 
         List<Integer> integers = Arrays.asList(25, 19, 23, 45, 38, 23, 59, 12);
-
+        integers.sort((a, b) -> b.compareTo(a));
+        System.out.println(integers); // [59, 45, 38, 25, 23, 23, 19, 12]
 
     }
 

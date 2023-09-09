@@ -1,5 +1,35 @@
+import model.Car;
+import model.Car.BodyType;
+import model.CarDealership;
+
 public class Main {
     public static void main(String[] args) {
-        
+           Car car1 = new Car("Toyota", BodyType.SEDAN, 2020);
+    Car car2 = new Car("Honda", BodyType.SEDAN, 2021);
+
+
+    CarDealership dealership = new CarDealership();
+    
+    // Test the addCar method
+    dealership.addCar(car1);
+    dealership.addCar(car2);
+
+
+    // Test the getCar method
+    Car retrievedCar = dealership.getCar(0);
+    System.out.println(retrievedCar.getMake() + " " + retrievedCar.getBodyType());
+
+
+    // Test the setCar method
+    Car newCar = new Car("Ford", BodyType.COUPE, 2022);
+    dealership.setCar( 0, newCar);
+
+
+    // Verify that the car was updated
+    retrievedCar = dealership.getCar(0);
+    System.out.println(retrievedCar.getMake() + " " + retrievedCar.getBodyType());
+
+    dealership.printCars();
+
     }
 }

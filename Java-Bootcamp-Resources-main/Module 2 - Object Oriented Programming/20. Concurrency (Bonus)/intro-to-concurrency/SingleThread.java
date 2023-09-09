@@ -1,5 +1,6 @@
 public class SingleThread {
     public static void main(String[] args) {
+        
         longTask();
         System.out.println("Doing other work on main thread");
 

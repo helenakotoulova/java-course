@@ -10,7 +10,7 @@ public class Store {
     }
 
     public Movie getMovie(int index) {
-        return new Movie(movies.get(index));
+        return new Movie(this.movies.get(index));
     }
 
     public void setMovie(int index, Movie movie) {

@@ -7,7 +7,7 @@ public class Car {
     private String color;
     private String[] parts;
 
-    public Car(String make, double price, int year, String color, String[] parts) {
+    public Car(String make, double price,  int year, String color, String[] parts) {
         this.make = make;
         this.price = price;
         this.year = year;

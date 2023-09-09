@@ -1,30 +1,31 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
 
-        // TODO: create cities ArrayList;
-        // cities.add("Paris");
-        // cities.add("Florence");
-        // cities.add("Venice");
-        // cities.add("Versailles");
-        // cities.add("London");
-        // cities.add("Petra");
-        // cities.add("Oslo");
-        // cities.add("Rome");
-        // cities.add("Madrid");
-        // cities.add("Tokyo");
-        // cities.add("Prague");
-        // cities.add("Dublin");
-        // cities.add("Athens");
-        // cities.add("Marseille");
-        // cities.add("Chicago");
+        ArrayList<String> cities = new ArrayList<>();
+        // After creating the ArrayList, the size and capacity are initially 0.
+        //cities.ensureCapacity(1); // zajisi min. kapacitu
+        cities.add("Brno");
+        cities.addAll(1, Arrays.asList("Praha", "Seninka"));
+        System.out.println(cities); // [Brno, Praha, Seninka]
 
-        // System.out.println(cities.size());
-        // System.out.println(cities.get(5));
-        // System.out.println(cities.get(8));
-        // cities.set(2, "Naples");
-        // cities.remove(5);
+        int size = cities.size();
+        System.out.println(size); // 3
+        System.out.println(cities.get(0)); // Brno
+        cities.set(size - 1, "Olomouc");
+        System.out.println(cities); // [Brno, Praha, Olomouc]
+        cities.remove(2);
+        System.out.println(cities); // [Brno, Praha]
+
+        // cities.set(size, "XYZ"); // Exception in thread "main" java.lang.IndexOutOfBoundsException: Index 3 out of bounds for length 2
 
     }
 
-
 }
+
+
+
+
+

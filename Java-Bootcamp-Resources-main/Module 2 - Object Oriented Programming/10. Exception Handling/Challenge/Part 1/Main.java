@@ -22,7 +22,7 @@ public class Main {
         String status = "continue";
     
         while (status.equals("continue")) {
-            int choice = (promptForChoice(scanner));
+            int choice = promptForChoice(scanner);
             Movie movie = store.getMovie(choice);
             double rating = promptForRating(scanner, movie.getName());
     
@@ -38,18 +38,25 @@ public class Main {
     public static int promptForChoice(Scanner scanner) {
         while (true) {
             System.out.print("\nPlease choose an integer between 0 - 9: ");
-
-            // 1. Anticipate the user not entering an integer.
-
-            int choice = scanner.nextInt();
-
-            // 2. Anticipate the choice being incorrect.
-            return choice;
+            try {
+                if (scanner.hasNextInt()) {
+                    int choice = scanner.nextInt();
+                    incorrectChoice(choice);
+                    return choice;
+                } else {
+                    scanner.nextLine(); // Bez toho to vezme pro to checkovani incorrectChoice ten string "You have to input integer." a dostane se to do nekonecne smycky
+                    throw new IllegalArgumentException("\nYou have to input integer.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
     public static boolean incorrectChoice(int choice) {
-        // TODO
+        if (choice < 0 || choice > 9) {
+            throw new IllegalArgumentException("\nYou should choose between 0 and 9.");
+        }
         return false;
     }
 
@@ -57,18 +64,25 @@ public class Main {
         while (true) {
             System.out.print("\nSet a new rating for " + name + ": ");
             
-            // 1. Anticipate the user not entering a double.
-
-            double rating = scanner.nextDouble();
-            
-            // 2. Anticipate the rating being incorrect.
-
-            return rating;
+            try {
+                if (scanner.hasNextDouble()) {
+                    double rating = scanner.nextDouble();
+                    incorrectRating(rating);
+                    return rating;
+                } else {
+                    scanner.nextLine();
+                    throw new IllegalArgumentException("\nYou have to input number.");
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
          }
     }
 
     public static boolean incorrectRating(double rating) {
-        // TODO
+        if (rating < 0 || rating > 10) {
+            throw new IllegalArgumentException("Rating should be between 0 and 10.");
+        }
         return false;
     }
 
@@ -77,7 +91,15 @@ public class Main {
         Scanner scanFile = new Scanner(fis);
 
         while (scanFile.hasNextLine()) {
-            // TODO
+            String line = scanFile.nextLine();
+            String[] lineParts = line.split("--");
+            if (lineParts.length != 3) {
+                scanFile.close();
+                throw new RuntimeException("Line does not contain all the relevant info, or it contains some additional info.");
+            }
+            double rating = Double.parseDouble(lineParts[2]);
+            Movie movie = new Movie(lineParts[0], lineParts[1], rating);
+            store.addMovie(movie);
         }
         scanFile.close();
     }

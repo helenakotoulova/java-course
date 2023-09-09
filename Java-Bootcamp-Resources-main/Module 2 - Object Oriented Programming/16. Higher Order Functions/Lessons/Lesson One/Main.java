@@ -15,5 +15,6 @@ public class Main {
             "Curie's contributions to science and medicine have been recognized and celebrated worldwide."
         );
         
+        facts.forEach(fact -> System.out.println(fact));
     }
 }
